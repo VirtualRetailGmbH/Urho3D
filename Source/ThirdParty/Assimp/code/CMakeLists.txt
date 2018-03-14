@@ -788,12 +788,12 @@ SET( zlib_SRCS
   ../contrib/zlib/trees.c
   ../contrib/zlib/trees.h
   ../contrib/zlib/uncompr.c
-  ${CMAKE_CURRENT_BINARY_DIR}/../contrib/zlib/zconf.h
   ../contrib/zlib/zlib.h
   ../contrib/zlib/zutil.c
   ../contrib/zlib/zutil.h
 )
 SOURCE_GROUP( zlib FILES ${zlib_SRCS})
+INCLUDE_DIRECTORIES( ../contrib/zlib ${CMAKE_CURRENT_BINARY_DIR}/../contrib/zlib )
 
 SET ( openddl_parser_SRCS
   ../contrib/openddlparser/code/OpenDDLParser.cpp
@@ -857,7 +857,7 @@ IF (RT_FOUND OR MSVC)
   ADD_DEFINITIONS( -DASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1 )
 ELSE ()
   SET (open3dgc_SRCS "")
-  MESSAGE (INFO " RT-extension not found. glTF import/export will be built without Open3DGC-compression.")
+  MESSAGE (STATUS "RT-extension not found. glTF import/export will be built without Open3DGC-compression.")
   #!TODO: off course is better to remove statistics timers from o3dgc codec. Or propose to choose what to use.
 ENDIF ()
 
