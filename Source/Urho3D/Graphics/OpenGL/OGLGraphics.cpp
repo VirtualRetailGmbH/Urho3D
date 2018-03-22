@@ -410,8 +410,9 @@ bool Graphics::SetMode(int width, int height, bool fullscreen, bool borderless, 
             SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, 0);
         }
 #else
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
 #endif
 
         if (multiSample > 1)
@@ -2108,7 +2109,7 @@ PODVector<int> Graphics::GetMultiSampleLevels() const
     for (int i = 2; i <= maxSamples && i <= 16; i *= 2)
         ret.Push(i);
 #endif
-    
+
     return ret;
 }
 
